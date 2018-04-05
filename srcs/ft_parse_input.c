@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_take_input.c                                    :+:      :+:    :+:   */
+/*   ft_parse_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 19:15:12 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/05 21:42:01 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+/*
+** Read entirely stdin
+*/
 
 static char			*ft_read_fd(int fd, ssize_t *n)
 {
@@ -18,8 +22,8 @@ static char			*ft_read_fd(int fd, ssize_t *n)
 	ssize_t	n_cur;
 
 	s = malloc(sizeof(char) * 256);
-	s[255] = '\0';
 	n_cur = read(fd, s, 255);
+	s[n_cur] = '\0';
 	if (n_cur == -1)
 		return (NULL);
 	if (n_cur == 255)
@@ -32,63 +36,27 @@ static char			*ft_read_fd(int fd, ssize_t *n)
 }
 
 /*
-** Prints prompt and parse input in a t_msh_params struct
+** Make a t_msh_command struct, set target program_name to first element
+** betwee IFS values,
+** and parse it's options/parameter in a char ** to be passed to execve
 */
-
-static int			ft_is_ifs(char c)
-{
-	int		i;
-
-	i = 0;
-	while (IFS[i] && IFS[i] != c)
-		i++;
-	return ((IFS[i] == c) ? (1) : (0));
-}
-
-t_prog_param		*ft_parse_prog_param_nb(char *str, int nb)
-{
-	int				i;
-	int				j;
-	t_prog_param	*e;
-
-	e = NULL;
-	i = 0;
-	while (str[i] && nb != 0)
-	{
-		while (str[i] && ft_is_ifs(str[i]))
-			i++;
-		if (!str[i])
-			return (NULL);
-		j = i;
-		while (!ft_is_ifs(str[j]))
-			j++;
-		nb--;
-	}
-	e = ft_create_prog_param_elem();
-	e->prm = ft_strsub(str, i, j);
-	return (e);
-}
 
 t_msh_command		*ft_parse_input(void)
 {
-	t_msh_command	*content;
+	t_msh_command	*input;
 	char			*s;
-	int				i;
 	ssize_t			n;
 
+	s = NULL;
 	n = 0;
-	i = -1;
 	s = ft_read_fd(0, &n);
-	PRINTF("n : %zd\n", n);
-	if (n > 0 && s && (content = malloc(sizeof(t_msh_command))))
+	if (n > 0 && s && ft_strlen(s) >= 1 && (input = malloc(sizeof(t_msh_command))))
 	{
 		ft_printf("s : |%s|\n", s);
-		while (!ft_is_ifs(s[++i]))
-			;
-		content->prog_name = ft_strsub(s, 0, i);
-		content->prog_prm = ft_parse_prog_param_nb(s + i, 1);
-		content->next = NULL;
-		return (content);
+		input->prog_name = ft_parse_prog_param_nb(s, 1);
+		input->prog_prms = ft_parse_prog_params(s);
+		input->next = NULL;
+		return (input);
 	}
 	return (NULL);
 }

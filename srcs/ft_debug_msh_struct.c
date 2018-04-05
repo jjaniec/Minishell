@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:22:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 19:13:31 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/05 20:09:28 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 
 void		ft_debug_msh_prog_params(void)
 {
-	t_prog_param	*ptr;
 	int				i;
 
-	i = 0;
-	ptr = g_msh_params->input->prog_prm;
-	while (ptr)
+	i = -1;
+	while (g_msh_params->input->prog_prms[++i])
 	{
-		PRINTF("\t\t->prog_params[%d]: |%s|\n", i, ptr->prm);
-		ptr = ptr->next;
-		i++;
+		PRINTF("\t\t->prog_prms[%d]: |%s|\n", i, g_msh_params->input->prog_prms[i]);
 	}
 }
 
@@ -42,7 +38,7 @@ void		ft_debug_g_msh_params(void)
 	{
 		PRINTF("\tContent of g_msh_params->input:\n");
 		PRINTF("\t\t->prog_name: |%s|\n", g_msh_params->input->prog_name);
-		if (g_msh_params->input->prog_prm && g_msh_params->input->prog_prm->prm)
+		if (g_msh_params->input->prog_prms)
 			ft_debug_msh_prog_params();
 		else
 			PRINTF("\t\t->prog_params: |(null)|\n");

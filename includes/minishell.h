@@ -6,12 +6,12 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 19:15:47 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/05 20:09:13 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MINISHELL_H__
-# define __MINISHELL_H__
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <ft_printf.h>
 
@@ -22,7 +22,7 @@
 typedef struct				s_msh_command
 {
 	char					*prog_name;
-	struct s_prog_param		*prog_prm;
+	char					**prog_prms;
 	struct s_msh_command	*next;
 }							t_msh_command;
 
@@ -40,6 +40,7 @@ typedef struct				s_msh_params
 }							t_msh_params;
 
 extern t_msh_params			*g_msh_params;
+extern char 				**environ;
 
 t_msh_command				*ft_parse_input(void);
 
@@ -52,5 +53,11 @@ void						ft_print_prompt(void);
 void						ft_debug_g_msh_params(void);
 
 void						ft_debug_msh_prog_params(void);
+
+int							ft_is_ifs(char c);
+
+char						**ft_parse_prog_params(char *s);
+
+char						*ft_parse_prog_param_nb(char *str, int nb);
 
 #endif
