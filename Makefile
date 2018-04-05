@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/05 14:58:47 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/05 19:15:36 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ NAME = minishell
 
 UNAME_S := $(shell uname -s)
 
-SRC_NAME = 	main.c
+SRC_NAME = 	ft_print_prompt.c \
+			ft_parse_input.c \
+			ft_create_msh_struct.c \
+			ft_debug_msh_struct.c \
+			main.c
 
 SRC_DIR = ./srcs/
 INCLUDES_DIR = ./includes/

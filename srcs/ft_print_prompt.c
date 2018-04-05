@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_prompt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 19:15:41 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/05 15:33:19 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/05 18:12:36 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_msh_params	*g_msh_params;
+/*
+** Prints minishell prompt
+*/
 
-int		main(void)
+void		ft_print_prompt(void)
 {
-	g_msh_params = ft_create_msh_params_struct();
-	while (1)
-	{
-		ft_print_prompt();
-		g_msh_params->input = ft_parse_input();
-		ft_debug_g_msh_params();
-		if (g_msh_params->input && \
-			ft_strcmp(g_msh_params->input->prog_name, "exit") == 0)
-			break ;
-	}
-	return (0);
+	write(1, "\n❯ ", 5);
 }
