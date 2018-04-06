@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:18:07 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 20:43:05 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void						ft_debug_msh_prog_params(void);
 
 int							ft_is_ifs(char c);
 
-char						**ft_parse_prog_params(char *s);
+char						**ft_parse_prog_params(char *s, t_msh_command *input);
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
 

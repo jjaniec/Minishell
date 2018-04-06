@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:21:21 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 20:46:51 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ t_msh_command		*ft_parse_input(void)
 	if (n > 0 && s && ft_strlen(s) >= 1 && (input = malloc(sizeof(t_msh_command))))
 	{
 		input->prog_name = ft_parse_prog_param_nb(s, 1);
-		input->prog_prms = ft_parse_prog_params(s);
+		input->prog_prms = ft_parse_prog_params(s, input);
+		if (!input->prog_prms)
+		{
+			input->prog_prms = malloc(sizeof(char *) * 2);
+			input->prog_prms[0] = input->prog_name;
+			input->prog_prms[1] = NULL;
+		}
 		input->next = NULL;
 		return (input);
 	}
