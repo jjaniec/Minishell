@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 21:42:01 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 20:50:25 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ static char			*ft_read_fd(int fd, ssize_t *n)
 ** and parse it's options/parameter in a char ** to be passed to execve
 */
 
+static char			**ft_init_prms_no_args(t_msh_command *input)
+{
+	char		**tab;
+
+	tab = malloc(sizeof(char *) * 2);
+	tab[0] = input->prog_name;
+	tab[1] = NULL;
+	return (tab);
+}
+
 t_msh_command		*ft_parse_input(void)
 {
 	t_msh_command	*input;
@@ -52,9 +62,10 @@ t_msh_command		*ft_parse_input(void)
 	s = ft_read_fd(0, &n);
 	if (n > 0 && s && ft_strlen(s) >= 1 && (input = malloc(sizeof(t_msh_command))))
 	{
-		ft_printf("s : |%s|\n", s);
 		input->prog_name = ft_parse_prog_param_nb(s, 1);
-		input->prog_prms = ft_parse_prog_params(s);
+		input->prog_prms = ft_parse_prog_params(s, input);
+		if (!input->prog_prms)
+			input->prog_prms = ft_init_prms_no_args(input);
 		input->next = NULL;
 		return (input);
 	}

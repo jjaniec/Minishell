@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:41:11 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 20:43:05 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <ft_printf.h>
+# include <sys/stat.h>
 
 # define PRINTF				printf
 
@@ -39,6 +40,7 @@ typedef struct				s_msh_params
 	int						input_r;
 	char					*cwd;
 	char					*home;
+	char					*user;
 }							t_msh_params;
 
 extern t_msh_params			*g_msh_params;
@@ -58,10 +60,14 @@ void						ft_debug_msh_prog_params(void);
 
 int							ft_is_ifs(char c);
 
-char						**ft_parse_prog_params(char *s);
+char						**ft_parse_prog_params(char *s, t_msh_command *input);
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
 
 void						ft_store_env_variables(void);
+
+char						*ft_strjoin_path(char *s1, char *s2);
+
+void						ft_start_prog(void);
 
 #endif
