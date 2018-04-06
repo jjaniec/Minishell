@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:43:19 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 19:53:51 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,14 @@ void			ft_store_env_variables(void)
 		if (ft_strcmp("PATH", environ[i]) == -61)
 			ft_store_path(environ[i]);
 		else if (ft_strcmp("PWD", environ[i]) == -61)
-			g_msh_params->cwd = environ[i];
+			g_msh_params->cwd = \
+				ft_strsub(environ[i], 4, 256);
 		else if (ft_strcmp("HOME", environ[i]) == -61)
-			g_msh_params->home = environ[i];
+			g_msh_params->home = \
+				ft_strsub(environ[i], 5, 256);
+		else if (ft_strcmp("USER", environ[i]) == -61)
+			g_msh_params->user = \
+				ft_strsub(environ[i], 5, 32);
 		//PRINTF("environ[%d] -> %s\n", i, environ[i]);
 	}
 }
