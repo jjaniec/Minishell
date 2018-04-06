@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:08:51 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 20:48:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 		ft_print_prompt();
 		g_msh_params->input = ft_parse_input();
 		ft_store_env_variables();
-		ft_debug_g_msh_params();
+		//ft_debug_g_msh_params();
 		if (g_msh_params->input && g_msh_params->input->prog_name && \
 			ft_strcmp(g_msh_params->input->prog_name, "exit") == 0)
 			break ;
