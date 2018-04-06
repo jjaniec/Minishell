@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:08:51 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/06 20:04:58 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/06 20:20:36 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_msh_params	*g_msh_params;
-
-int		main(void)
+char	*ft_strjoin_path(char *s1, char *s2)
 {
-	g_msh_params = ft_create_msh_params_struct();
-	while (1)
-	{
-		ft_print_prompt();
-		g_msh_params->input = ft_parse_input();
-		ft_store_env_variables();
-		ft_debug_g_msh_params();
-		if (g_msh_params->input && g_msh_params->input->prog_name && \
-			ft_strcmp(g_msh_params->input->prog_name, "exit") == 0)
-			break ;
-		else
-			ft_start_prog();
-	}
-	return (0);
+	char	*r;
+	size_t	l;
+
+	l = ft_strlen(s1);
+	if (l > 0 && s1[l - 1] == '/')
+		l -= 1;
+	r = malloc((l + ft_strlen(s2) + 2) * sizeof(char));
+	ft_strcpy(r, s1);
+	ft_strcpy(r + l + 1, s2);
+	r[l] = '/';
+	free(s1);
+//	free(s2);
+	return (r);
 }

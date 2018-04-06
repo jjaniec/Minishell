@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/06 18:57:01 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/06 20:16:54 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_parse_prog_param_nb.c \
 			ft_parse_prog_params.c \
 			ft_store_env_variables.c \
+			ft_start_prog.c \
+			ft_strjoin_path.c \
 			main.c
 
 SRC_DIR = ./srcs/
