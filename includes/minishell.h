@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 20:09:13 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 19:41:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ typedef struct				s_prog_param
 typedef struct				s_msh_params
 {
 	t_msh_command			*input;
+	char					*path[255];
 	int						input_r;
 	char					*cwd;
+	char					*home;
 }							t_msh_params;
 
 extern t_msh_params			*g_msh_params;
@@ -59,5 +61,7 @@ int							ft_is_ifs(char c);
 char						**ft_parse_prog_params(char *s);
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
+
+void						ft_store_env_variables(void);
 
 #endif

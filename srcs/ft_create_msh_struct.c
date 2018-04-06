@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:40:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/05 19:04:06 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/06 19:21:30 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_msh_params		*ft_create_msh_params_struct(void)
 		exit(2);
 	}
 	e->input = NULL;
+/*	e->path = NULL;*/
 	e->input_r = -255;
 	e->cwd = NULL;
 	return (e);
