@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:22:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:38:17 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ void			ft_start_prog(void)
 	char	*prog_abs_path;
 
 	i = -1;
+	prog_abs_path = NULL;
 	while (g_msh_params->path[++i])
 		if ((prog_abs_path = ft_is_path_valid(g_msh_params->path[i])))
 		{
-			execve(prog_abs_path, g_msh_params->input->prog_prms, environ);
-			free(prog_abs_path);
+			if (0 == (g_msh_params->input->pid = fork()) && -1 == \
+				execve(prog_abs_path, g_msh_params->input->prog_prms, environ))
+				break ;
+			ft_wait_pid(g_msh_params->input->pid);
+			break ;
 		}
+	free(prog_abs_path);
 }

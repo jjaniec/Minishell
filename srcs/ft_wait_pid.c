@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_wait_pid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 17:09:02 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/09 17:00:09 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/09 17:42:32 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_msh_params	*g_msh_params;
+/*
+** Wait for executed program completion,
+** returns total duration of program
+*/
 
-int		main(void)
+unsigned int		ft_wait_pid(pid_t pid)
 {
-	g_msh_params = ft_create_msh_params_struct();
-	while (1)
-	{
-		ft_print_prompt();
-		g_msh_params->input = ft_parse_input();
-		ft_store_env_variables();
-		ft_debug_g_msh_params();
-		if (g_msh_params->input && g_msh_params->input->prog_name && \
-			ft_strcmp(g_msh_params->input->prog_name, "exit") == 0)
-			break ;
-		else
-		{
-			ft_start_prog();
-		}
-	}
+	int				status;
+
+	while (0 == waitpid(pid, &status, WNOHANG))
+		wait(&status);
+	printf("WEXITSTATUS %d WIFEXITED %d [status %d]\n",
+		WEXITSTATUS(status), WIFEXITED(status), status);
 	return (0);
 }
