@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 17:07:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 18:42:42 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 typedef struct				s_msh_command
 {
 	char					*prog_name;
+	struct stat				*prog_stats;
+	int						stats_rcode;
 	pid_t					pid;
 	char					**prog_prms;
 	struct s_msh_command	*next;
@@ -75,6 +77,8 @@ char						*ft_strjoin_path(char *s1, char *s2);
 void						ft_start_prog(void);
 
 unsigned int				ft_wait_pid(pid_t pid);
+
+int							ft_can_exec_path(t_msh_command *cmd, char *path);
 
 
 #endif
