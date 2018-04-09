@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 17:38:17 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 18:06:35 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static char		*ft_is_path_valid(char *prog_path)
 
 	s = ft_strjoin_path(prog_path, g_msh_params->input->prog_name);
 	if (lstat(s, &prog_stats) < 0)
+	{
+		free(s);
 		return (NULL);
+	}
 	return (s);
 }
 
@@ -41,7 +44,7 @@ void			ft_start_prog(void)
 				execve(prog_abs_path, g_msh_params->input->prog_prms, environ))
 				break ;
 			ft_wait_pid(g_msh_params->input->pid);
+			free(prog_abs_path);
 			break ;
 		}
-	free(prog_abs_path);
 }

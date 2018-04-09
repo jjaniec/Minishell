@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 16:39:10 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:56:31 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static char			*ft_read_fd(int fd, ssize_t *n)
 
 	s = malloc(sizeof(char) * 256);
 	n_cur = read(fd, s, 255);
+	if (!n_cur || (n_cur == 1 && s[0] == '\n'))
+	{
+		free(s);
+		return (NULL);
+	}
 	s[n_cur] = '\0';
 	if (n_cur == -1)
 		return (NULL);
@@ -60,8 +65,9 @@ t_msh_command		*ft_parse_input(void)
 	s = NULL;
 	n = 0;
 	s = ft_read_fd(0, &n);
-	if (n > 0 && s && ft_strlen(s) >= 1 && (input = malloc(sizeof(t_msh_command))))
+	if (n > 0 && s && ft_strlen(s) >= 1)
 	{
+		input = malloc(sizeof(t_msh_command));
 		input->prog_name = ft_parse_prog_param_nb(s, 1);
 		if (input->prog_name)
 		{
