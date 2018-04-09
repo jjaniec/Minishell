@@ -6,14 +6,16 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 20:12:38 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 20:28:13 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-** Try to launch value of g_msh_params->prog_name with every path entry
+** Try to launch value of g_msh_params->prog_name with every path entry,
+** if prog_name is not found with every path entry, print
+** error not found error
 */
 
 static char		*ft_is_path_valid(char *prog_path)
@@ -52,6 +54,6 @@ void			ft_start_prog(void)
 				break ;
 			}
 		}
-	/*if (!prog_path)
-		ft_err_cmd_not_found();*/
+	if (!prog_path)
+		ft_err_cmd_not_found(g_msh_params->input);
 }
