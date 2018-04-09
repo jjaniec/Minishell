@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 20:24:41 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/09 20:57:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,9 @@ unsigned int				ft_wait_pid(pid_t pid);
 int							ft_can_exec_path(t_msh_command *cmd, char *path);
 
 void						ft_err_cmd_not_found(t_msh_command *cmd);
+
+void						ft_handle_err_code(int err, char *prog_name);
+
+int							ft_handle_err(t_msh_command *cmd);
 
 #endif
