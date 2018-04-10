@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:18:44 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 21:18:30 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 16:19:54 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ int			ft_handle_err(t_msh_command *cmd)
 	int		err;
 
 	err = 0;
-	if (S_ISDIR(cmd->prog_stats->st_mode))
-		ft_handle_err_code((err = 1), cmd->prog_name);
-	else if (!(cmd->prog_stats->st_mode & S_IXUSR))
-		ft_handle_err_code((err = 2), cmd->prog_name);
-	return ((err == 0) ? (0) : (1));
+	if (cmd && cmd->prog_stats)
+	{
+		if (S_ISDIR(cmd->prog_stats->st_mode))
+			ft_handle_err_code((err = 1), cmd->prog_name);
+		else if (!(cmd->prog_stats->st_mode & S_IXUSR))
+			ft_handle_err_code((err = 2), cmd->prog_name);
+	}
+	return (err);
 }
