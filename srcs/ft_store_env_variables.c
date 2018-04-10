@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:02:04 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 19:10:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Get path environnement variable data and store each entry in a char *
 */
 
-static void		ft_store_path(char *s)
+static void		ft_store_path_fmt(char *s)
 {
 	char		*s2;
 	int			i;
@@ -54,7 +54,7 @@ void			ft_store_cwd_fmt(char *cwd_env_ptr)
 ** Store usefull environnement variable in our global structure
 */
 
-void			ft_store_env_variables(void)
+void			ft_store_env_variables_fmt(void)
 {
 	int		i;
 
@@ -62,14 +62,12 @@ void			ft_store_env_variables(void)
 	while (environ[++i])
 	{
 		if (ft_strcmp("PATH", environ[i]) == -61)
-			ft_store_path(environ[i]);
+			ft_store_path_fmt(environ[i]);
 		else if (ft_strcmp("PWD", environ[i]) == -61)
 			ft_store_cwd_fmt(environ[i]);
 		else if (ft_strcmp("HOME", environ[i]) == -61)
 			g_msh_params->home_fmt = environ[i] + 5;
 		else if (ft_strcmp("USER", environ[i]) == -61)
-			g_msh_params->user = \
-				ft_strsub(environ[i], 5, 32);
-		//PRINTF("environ[%d] -> %s\n", i, environ[i]);
+			g_msh_params->user = environ[i] + 5;
 	}
 }

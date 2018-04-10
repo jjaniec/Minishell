@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 18:49:20 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 19:23:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char						**ft_parse_prog_params(char *s, t_msh_command *input);
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
 
-void						ft_store_env_variables(void);
+void						ft_store_env_variables_fmt(void);
 
 char						*ft_strjoin_path(char *s1, char *s2);
 
@@ -90,5 +90,7 @@ int							ft_handle_err(t_msh_command *cmd);
 int							ft_is_builtin(t_msh_command *cmd);
 
 void						ft_exec_builtin(int blt, t_msh_command *cmd);
+
+char						**ft_add_ptr_to_tab(char **tab, char *e);
 
 #endif
