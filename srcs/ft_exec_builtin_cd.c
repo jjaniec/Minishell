@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 00:31:03 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 00:46:52 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_change_dir(char *path)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(path, 2);
-		if (!stat(path, &path_stats))
+		if (stat(path, &path_stats))
 			ft_putstr_fd(": no such file or directory\n", 2);
 		else
 			ft_putstr_fd(": permission denied\n", 2); 
