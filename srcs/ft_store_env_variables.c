@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:53:51 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 19:02:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ static void		ft_store_path(char *s)
 	g_msh_params->path[index] = NULL;
 }
 
+void			ft_store_cwd_fmt(char *cwd_env_ptr)
+{
+	if (cwd_env_ptr && ft_strlen(cwd_env_ptr) >= 4)
+		g_msh_params->cwd_fmt = cwd_env_ptr + 4;
+	else
+		g_msh_params->cwd_fmt = NULL;
+}
+
 /*
 ** Store usefull environnement variable in our global structure
 */
@@ -56,11 +64,9 @@ void			ft_store_env_variables(void)
 		if (ft_strcmp("PATH", environ[i]) == -61)
 			ft_store_path(environ[i]);
 		else if (ft_strcmp("PWD", environ[i]) == -61)
-			g_msh_params->cwd = \
-				ft_strsub(environ[i], 4, 256);
+			ft_store_cwd_fmt(environ[i]);
 		else if (ft_strcmp("HOME", environ[i]) == -61)
-			g_msh_params->home = \
-				ft_strsub(environ[i], 5, 256);
+			g_msh_params->home_fmt = environ[i] + 5;
 		else if (ft_strcmp("USER", environ[i]) == -61)
 			g_msh_params->user = \
 				ft_strsub(environ[i], 5, 32);

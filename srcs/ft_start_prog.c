@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 16:33:29 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 18:49:34 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		ft_is_prog_name_path(t_msh_command *cmd)
 
 	cmd->prog_stats = malloc(sizeof(struct stat));
 	path = ((cmd->prog_name[0] == '.') ? \
-		(ft_strjoin_path(g_msh_params->cwd, cmd->prog_name)) : \
+		(ft_strjoin_path(g_msh_params->cwd_fmt, cmd->prog_name)) : \
 		(cmd->prog_name));
 	cmd->stats_rcode = stat(path, cmd->prog_stats);
 	if (cmd->stats_rcode >= 0 && !ft_handle_err(cmd))
