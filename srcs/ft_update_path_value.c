@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wait_pid.c                                      :+:      :+:    :+:   */
+/*   ft_update_path_value.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/09 17:00:09 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 00:33:02 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/10 19:34:27 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/10 19:44:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-** Wait for executed program completion
+**
 */
 
-unsigned int		ft_wait_pid(pid_t pid)
+char	*ft_update_path_value(char **path, char *var_name, char *data)
 {
-	int				status;
+	int		i;
+	char	*s;
 
-	while (0 == waitpid(pid, &status, WNOHANG))
-		wait(&status);
-	return (0);
+	i = 0;
+	while (path[i] && ft_strcmp(var_name, path[i]) != -61)
+		i++;
+	if (path[i])
+	{
+		s = ft_strsub(path[i], 0, ft_strlen(var_name) + 1);
+		s = ft_strjoin(s, data);
+		free(path[i]);
+		path[i] = s;
+		return (s);
+	}
+	return (NULL);
 }

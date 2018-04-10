@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:22:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:54:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 18:57:53 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_debug_g_msh_params(void)
 	PRINTF("\tg_msh_params->input_r: %d\n", g_msh_params->input_r);
 	PRINTF("\tg_msh_params->path:\n");
 	ft_debug_path();
-	PRINTF("\tg_msh_params->cwd: |%s|\n", g_msh_params->cwd);
-	PRINTF("\tg_msh_params->home: |%s|\n", g_msh_params->home);
+	PRINTF("\tg_msh_params->cwd_fmt: |%s|\n", g_msh_params->cwd_fmt);
+	PRINTF("\tg_msh_params->home_fmt: |%s|\n", g_msh_params->home_fmt);
 	PRINTF("\tg_msh_params->user: |%s|\n", g_msh_params->user);
 }
