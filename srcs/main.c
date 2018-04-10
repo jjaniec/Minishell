@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:45:46 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 00:31:16 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(void)
 		g_msh_params->input = ft_parse_input();
 		if (g_msh_params->input)
 		{
-			ft_debug_g_msh_params();
+			//ft_debug_g_msh_params();
 			if ((blt = ft_is_builtin(g_msh_params->input)) == 2)
 				break ;
 			else if (blt == 0)

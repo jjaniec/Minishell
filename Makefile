@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/10 19:44:02 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/10 23:13:05 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_debug_msh_struct.c \
 			ft_parse_prog_param_nb.c \
 			ft_parse_prog_params.c \
-			ft_store_env_variables.c \
+			ft_store_env_variables_fmt.c \
 			ft_start_prog.c \
 			ft_strjoin_path.c \
 			ft_wait_pid.c \
@@ -30,6 +30,7 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_exec_builtin.c \
 			ft_add_ptr_to_tab.c \
 			ft_update_path_value.c \
+			ft_exec_builtin_cd.c \
 			main.c
 
 SRC_DIR = ./srcs/

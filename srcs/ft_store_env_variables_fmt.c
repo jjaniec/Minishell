@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_store_env_variables.c                           :+:      :+:    :+:   */
+/*   ft_store_env_variables_fmt.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:10:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 23:30:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,18 @@ void			ft_store_env_variables_fmt(void)
 	int		i;
 
 	i = -1;
-	while (environ[++i])
+	while (g_msh_params->cur_environ[++i])
 	{
-		if (ft_strcmp("PATH", environ[i]) == -61)
-			ft_store_path_fmt(environ[i]);
-		else if (ft_strcmp("PWD", environ[i]) == -61)
-			ft_store_cwd_fmt(environ[i]);
-		else if (ft_strcmp("HOME", environ[i]) == -61)
-			g_msh_params->home_fmt = environ[i] + 5;
-		else if (ft_strcmp("USER", environ[i]) == -61)
-			g_msh_params->user = environ[i] + 5;
+		if (ft_strcmp("PATH", g_msh_params->cur_environ[i]) == -61)
+			ft_store_path_fmt(g_msh_params->cur_environ[i]);
+		else if (ft_strcmp("PWD", g_msh_params->cur_environ[i]) == -61)
+		{
+			ft_store_cwd_fmt(g_msh_params->cur_environ[i]);
+			g_msh_params->cwd_env = g_msh_params->cur_environ[i];
+		}
+		else if (ft_strcmp("HOME", g_msh_params->cur_environ[i]) == -61)
+			g_msh_params->home_fmt = g_msh_params->cur_environ[i] + 5;
+		else if (ft_strcmp("USER", g_msh_params->cur_environ[i]) == -61)
+			g_msh_params->user = g_msh_params->cur_environ[i] + 5;
 	}
 }
