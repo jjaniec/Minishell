@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:40:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:48:35 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 17:51:24 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ t_msh_params		*ft_create_msh_params_struct(void)
 	e->input_r = -255;
 	e->cwd = NULL;
 	e->home = NULL;
+	e->user = NULL;
+	e->environ = environ;
 	return (e);
 }

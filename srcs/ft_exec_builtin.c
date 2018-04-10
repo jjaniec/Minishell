@@ -6,13 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:31:48 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 17:46:04 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 17:53:55 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void		ft_exec_builtin_echo(t_msh_command *cmd)
+static void		ft_exec_builtin_echo(t_msh_command *cmd)
 {
 	int		i;
 
@@ -25,12 +25,23 @@ void		ft_exec_builtin_echo(t_msh_command *cmd)
 	PRINTF("\n");
 }
 
+static void		ft_exec_builtin_env(void)
+{
+	int		i;
+
+	i = -1;
+	while (g_msh_params->environ[++i])
+		PRINTF("%s\n", g_msh_params->environ[i]);
+}
+
 /*
 ** Execute builtin number $blt
 */
 
-void		ft_exec_builtin(int blt, t_msh_command *cmd)
+void			ft_exec_builtin(int blt, t_msh_command *cmd)
 {
 	if (blt == 1)
 		ft_exec_builtin_echo(cmd);
+	if (blt == 5)
+		ft_exec_builtin_env();
 }
