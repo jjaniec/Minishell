@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/10 17:24:51 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/10 17:44:36 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_can_exec_path.c \
 			ft_handle_err.c \
 			ft_is_builtin.c \
+			ft_exec_builtin.c \
 			main.c
 
 SRC_DIR = ./srcs/

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 17:24:35 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 17:44:26 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <sys/types.h>
-
 
 # define PRINTF				printf
 
@@ -87,5 +86,7 @@ void						ft_handle_err_code(int err, char *prog_name);
 int							ft_handle_err(t_msh_command *cmd);
 
 int							ft_is_builtin(t_msh_command *cmd);
+
+void						ft_exec_builtin(int blt, t_msh_command *cmd);
 
 #endif
