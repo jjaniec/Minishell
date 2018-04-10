@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:33:19 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 18:22:13 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 18:53:43 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ static void	ft_print_cur_dir(char *cwd, char *home)
 void		ft_print_prompt(void)
 {
 	write(1, "\n", 1);
-	ft_print_cur_dir(g_msh_params->cwd, g_msh_params->home);
+	ft_print_cur_dir(g_msh_params->cwd_fmt, g_msh_params->home_fmt);
 	write(1, "❯ ", 4);
 }

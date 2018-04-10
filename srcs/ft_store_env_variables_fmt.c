@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_store_env_variables.c                           :+:      :+:    :+:   */
+/*   ft_store_env_variables_fmt.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 19:53:51 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/10 23:30:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Get path environnement variable data and store each entry in a char *
 */
 
-static void		ft_store_path(char *s)
+static void		ft_store_path_fmt(char *s)
 {
 	char		*s2;
 	int			i;
@@ -42,28 +42,35 @@ static void		ft_store_path(char *s)
 	g_msh_params->path[index] = NULL;
 }
 
+void			ft_store_cwd_fmt(char *cwd_env_ptr)
+{
+	if (cwd_env_ptr && ft_strlen(cwd_env_ptr) >= 4)
+		g_msh_params->cwd_fmt = cwd_env_ptr + 4;
+	else
+		g_msh_params->cwd_fmt = NULL;
+}
+
 /*
 ** Store usefull environnement variable in our global structure
 */
 
-void			ft_store_env_variables(void)
+void			ft_store_env_variables_fmt(void)
 {
 	int		i;
 
 	i = -1;
-	while (environ[++i])
+	while (g_msh_params->cur_environ[++i])
 	{
-		if (ft_strcmp("PATH", environ[i]) == -61)
-			ft_store_path(environ[i]);
-		else if (ft_strcmp("PWD", environ[i]) == -61)
-			g_msh_params->cwd = \
-				ft_strsub(environ[i], 4, 256);
-		else if (ft_strcmp("HOME", environ[i]) == -61)
-			g_msh_params->home = \
-				ft_strsub(environ[i], 5, 256);
-		else if (ft_strcmp("USER", environ[i]) == -61)
-			g_msh_params->user = \
-				ft_strsub(environ[i], 5, 32);
-		//PRINTF("environ[%d] -> %s\n", i, environ[i]);
+		if (ft_strcmp("PATH", g_msh_params->cur_environ[i]) == -61)
+			ft_store_path_fmt(g_msh_params->cur_environ[i]);
+		else if (ft_strcmp("PWD", g_msh_params->cur_environ[i]) == -61)
+		{
+			ft_store_cwd_fmt(g_msh_params->cur_environ[i]);
+			g_msh_params->cwd_env = g_msh_params->cur_environ[i];
+		}
+		else if (ft_strcmp("HOME", g_msh_params->cur_environ[i]) == -61)
+			g_msh_params->home_fmt = g_msh_params->cur_environ[i] + 5;
+		else if (ft_strcmp("USER", g_msh_params->cur_environ[i]) == -61)
+			g_msh_params->user = g_msh_params->cur_environ[i] + 5;
 	}
 }
