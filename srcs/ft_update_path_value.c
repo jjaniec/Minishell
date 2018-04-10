@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_update_path_value.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:45:46 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/10 19:34:27 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/10 19:44:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_msh_params	*g_msh_params;
+/*
+**
+*/
 
-int		main(void)
+char	*ft_update_path_value(char **path, char *var_name, char *data)
 {
-	int		blt;
+	int		i;
+	char	*s;
 
-	g_msh_params = ft_create_msh_params_struct();
-	ft_store_env_variables_fmt();
-	while (1)
+	i = 0;
+	while (path[i] && ft_strcmp(var_name, path[i]) != -61)
+		i++;
+	if (path[i])
 	{
-		ft_print_prompt();
-		g_msh_params->input = ft_parse_input();
-		if (g_msh_params->input)
-		{
-			ft_debug_g_msh_params();
-			if ((blt = ft_is_builtin(g_msh_params->input)) == 2)
-				break ;
-			else if (blt == 0)
-				ft_start_prog();
-		}
+		s = ft_strsub(path[i], 0, ft_strlen(var_name) + 1);
+		s = ft_strjoin(s, data);
+		free(path[i]);
+		path[i] = s;
+		return (s);
 	}
-	return (0);
+	return (NULL);
 }
