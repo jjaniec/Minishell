@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 18:49:34 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 18:02:56 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void		ft_is_prog_name_path(t_msh_command *cmd)
 	if (cmd->stats_rcode >= 0 && !ft_handle_err(cmd))
 	{
 		if (0 == (g_msh_params->input->pid = fork()))
-			execve(path, g_msh_params->input->prog_prms, environ);
+			execve(path, g_msh_params->input->prog_prms, \
+				g_msh_params->cur_environ);
 		ft_wait_pid(g_msh_params->input->pid);
 	}
 	else if (cmd->stats_rcode < 0)

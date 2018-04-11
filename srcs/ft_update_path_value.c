@@ -6,14 +6,16 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:34:27 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:44:11 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 16:26:19 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-**
+** Change the value of $var_name in $path,
+** if $var_name is not found, return NULL
+** otherwise return the address of $var_name
 */
 
 char	*ft_update_path_value(char **path, char *var_name, char *data)
