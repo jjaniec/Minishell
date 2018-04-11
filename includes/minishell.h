@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 16:19:02 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 18:16:10 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ char						*ft_update_path_value(char **path, char *var_name, char *data);
 
 void						ft_exec_builtin_cd(t_msh_command *cmd);
 
-void	ft_msh_setenv(char *name, char *value, int overwrite);
+void						ft_msh_setenv(char *name, char *value, int overwrite);
+
+void						ft_msh_unsetenv(char *name);
 
 #endif

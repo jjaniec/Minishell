@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 00:31:16 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 18:05:34 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(void)
 	{
 		ft_print_prompt();
 		g_msh_params->input = ft_parse_input();
-		if (g_msh_params->input)
+		if (g_msh_params->input && g_msh_params->input->prog_name)
 		{
 			//ft_debug_g_msh_params();
 			if ((blt = ft_is_builtin(g_msh_params->input)) == 2)

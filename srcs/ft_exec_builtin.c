@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:31:48 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 16:18:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 18:29:17 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void			ft_exec_builtin(int blt, t_msh_command *cmd)
 		ft_exec_builtin_cd(cmd);
 	else if (blt == 3 && cmd->prog_prms[1] && cmd->prog_prms[2])
 		ft_msh_setenv(cmd->prog_prms[1], cmd->prog_prms[2], 1);
-	/*else if (blt == 4)
-		ft_exec_builtin_unsetenv(cmd);*/
+	else if (blt == 4)
+		ft_msh_unsetenv(cmd->prog_prms[1]);
 }
