@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 17:18:42 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 22:46:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@
 static void	ft_refresh_cwd_env(void)
 {
 	char	cwd_new_fmt[1024];
-	char	*cwd_new;
 
 	if (getcwd(cwd_new_fmt, sizeof(cwd_new_fmt)) == NULL)
 		ft_putstr_fd("minishell: .: permission denied\n", 2);
 	else
 	{
-		free(g_msh_params->cwd_env);
-		cwd_new = ft_strjoin("PWD=", cwd_new_fmt);
-		g_msh_params->cwd_env = cwd_new;
-		g_msh_params->cwd_fmt = cwd_new_fmt;
+		g_msh_params->cwd_env = \
+			ft_update_path_value(g_msh_params->cur_environ, "PWD", cwd_new_fmt);
+		if (g_msh_params->cwd_env && ft_strlen(g_msh_params->cwd_env) >= 4)
+			g_msh_params->cwd_fmt = &(g_msh_params->cwd_env[4]);
+		else
+			g_msh_params->cwd_fmt = NULL;
 	}
 }
 
@@ -72,5 +73,7 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 	}
 	free(g_msh_params->prev_location);
 	g_msh_params->prev_location = ft_strdup(g_msh_params->cwd_fmt);
+	ft_update_path_value(g_msh_params->cur_environ, "OLDPWD", \
+		g_msh_params->prev_location);
 	ft_refresh_cwd_env();
 }

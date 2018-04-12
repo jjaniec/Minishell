@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 21:36:39 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 22:08:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 
-# define PRINTF				printf
+# define PRINTF				ft_printf
 
 # define IFS				"\x20\x09\x0a\x00"
 
