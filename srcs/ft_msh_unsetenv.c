@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:06:47 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:31:27 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 22:04:45 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_msh_unsetenv(char *name)
 	{
 		while (g_msh_params->cur_environ[++i])
 			;
-		new_env = malloc(sizeof(char *) * i);
+		new_env = malloc(sizeof(char *) * (i + 1));
 		new_env[i] = NULL;
 		i = -1;
 		j = 0;
