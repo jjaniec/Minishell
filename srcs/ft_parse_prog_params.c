@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 19:21:17 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/06 20:42:38 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 19:22:58 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ char			**ft_parse_prog_params(char *s, t_msh_command *input)
 		while (++i < params_l)
 			r[i + 1] = ft_parse_prog_param_nb(s, i + 2);
 	}
+	input->prog_prms_count = params_l - 1;
 	return (r);
 }

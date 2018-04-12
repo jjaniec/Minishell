@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/09 17:56:31 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 19:21:12 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static char			**ft_init_prms_no_args(t_msh_command *input)
 	tab = malloc(sizeof(char *) * 2);
 	tab[0] = input->prog_name;
 	tab[1] = NULL;
+	input->prog_prms_count = 0;
 	return (tab);
 }
 

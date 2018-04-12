@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:16:10 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/11 19:18:59 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct				s_msh_command
 	int						stats_rcode;
 	pid_t					pid;
 	char					**prog_prms;
+	int						prog_prms_count;
 	struct s_msh_command	*next;
 }							t_msh_command;
 
