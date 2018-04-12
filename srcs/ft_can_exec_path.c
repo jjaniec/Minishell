@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_can_exec_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:05:34 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/09 18:16:28 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/10 15:06:47 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_msh_params	*g_msh_params;
+/*
+** Return 0 if found executable can be launched, otherwise return 1
+*/
 
-int		main(void)
+int		ft_can_exec_path(t_msh_command *cmd, char *path)
 {
-	int		blt;
-
-	g_msh_params = ft_create_msh_params_struct();
-	ft_store_env_variables_fmt();
-	while (1)
+	if (cmd && path)
 	{
-		ft_print_prompt();
-		g_msh_params->input = ft_parse_input();
-		if (g_msh_params->input && g_msh_params->input->prog_name)
+		cmd->prog_stats = malloc(sizeof(struct stat));
+		cmd->stats_rcode = stat(path, cmd->prog_stats);
+		if (cmd->stats_rcode < 0)
 		{
-			//ft_debug_g_msh_params();
-			if ((blt = ft_is_builtin(g_msh_params->input)) == 2)
-				break ;
-			else if (blt == 0)
-				ft_start_prog();
+			ft_handle_err_code(2, cmd->prog_name);
+			return (0);
 		}
+		return (ft_handle_err(cmd));
 	}
 	return (0);
 }
