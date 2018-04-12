@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 19:18:59 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 17:10:51 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct				s_msh_params
 	char					*cwd_fmt;
 	char					*cwd_env;
 	char					*home_fmt;
+	char					*prev_location;
 	char					*user;
 }							t_msh_params;
 

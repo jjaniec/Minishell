@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 00:46:52 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 17:18:42 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void	ft_change_dir(char *path)
 {
 	struct stat	path_stats;
 
+	if (!path && g_msh_params->home_fmt)
+		ft_change_dir(g_msh_params->home_fmt);
 	if (chdir(path))
 	{
 		ft_putstr_fd("minishell: ", 2);
@@ -43,7 +45,7 @@ static void	ft_change_dir(char *path)
 		if (stat(path, &path_stats))
 			ft_putstr_fd(": no such file or directory\n", 2);
 		else
-			ft_putstr_fd(": permission denied\n", 2); 
+			ft_putstr_fd(": permission denied\n", 2);
 	}
 }
 
@@ -56,6 +58,8 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 		ft_change_dir(g_msh_params->home_fmt);
 	else if (cmd->prog_prms[1][0] == '/')
 		ft_change_dir(cmd->prog_prms[1]);
+	else if (ft_strcmp(cmd->prog_prms[1], "-") == 0)
+		ft_change_dir(g_msh_params->prev_location);
 	else if (cmd->prog_prms[1])
 	{
 		if (!(getcwd(cwd_fmt, sizeof(cwd_fmt))))
@@ -66,5 +70,7 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 			ft_change_dir(new_dir_path);
 		}
 	}
+	free(g_msh_params->prev_location);
+	g_msh_params->prev_location = ft_strdup(g_msh_params->cwd_fmt);
 	ft_refresh_cwd_env();
 }
