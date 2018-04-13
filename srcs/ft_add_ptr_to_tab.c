@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:10:44 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 19:26:09 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 16:42:22 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ char		**ft_add_ptr_to_tab(char **tab, char *e)
 		r = malloc(sizeof(char *) * (i + ((e) ? (2) : (1))));
 		i = -1;
 		while (tab[++i])
+		{
 			r[i] = ft_strdup(tab[i]);
+			if (e)
+			{
+				free(tab[i]);
+				tab[i] = NULL;
+			}
+		}
 		r[i] = ((e) ? (ft_strdup(e)) : (e));
 	}
 	return (r);

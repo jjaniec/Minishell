@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 22:46:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 19:09:01 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 	char	*new_dir_path;
 
 	if (!(cmd->prog_prms[0] && cmd->prog_prms[1]))
-		ft_change_dir(g_msh_params->home_fmt);
+	{
+		if (g_msh_params->home_fmt)
+			ft_change_dir(g_msh_params->home_fmt);
+	}
 	else if (cmd->prog_prms[1][0] == '/')
 		ft_change_dir(cmd->prog_prms[1]);
 	else if (ft_strcmp(cmd->prog_prms[1], "-") == 0)

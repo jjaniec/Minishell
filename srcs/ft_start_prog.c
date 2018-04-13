@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:02:56 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 17:27:00 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char		*ft_is_path_valid(char *prog_path, t_msh_command *cmd)
 	if ((cmd->stats_rcode = stat(s, cmd->prog_stats)) < 0)
 	{
 		free(s);
+		free(cmd->prog_stats);
+		cmd->prog_stats = NULL;
 		return (NULL);
 	}
 	return (s);
@@ -43,7 +45,7 @@ static void		ft_is_prog_name_path(t_msh_command *cmd)
 	cmd->prog_stats = malloc(sizeof(struct stat));
 	path = ((cmd->prog_name[0] == '.') ? \
 		(ft_strjoin_path(g_msh_params->cwd_fmt, cmd->prog_name)) : \
-		(cmd->prog_name));
+		(ft_strdup(cmd->prog_name)));
 	cmd->stats_rcode = stat(path, cmd->prog_stats);
 	if (cmd->stats_rcode >= 0 && !ft_handle_err(cmd))
 	{
@@ -58,6 +60,7 @@ static void		ft_is_prog_name_path(t_msh_command *cmd)
 		ft_putstr_fd(cmd->prog_name, 2);
 		ft_putchar_fd('\n', 2);
 	}
+	free(path);
 }
 
 /*
@@ -79,7 +82,10 @@ void			ft_start_prog_path(void)
 			ft_is_path_valid(g_msh_params->path[i], g_msh_params->input)))
 		{
 			if (ft_can_exec_path(g_msh_params->input, prog_path))
+			{
+				free(prog_path);
 				break ;
+			}
 			else
 			{
 				if (0 == (g_msh_params->input->pid = fork()) && -1 == \

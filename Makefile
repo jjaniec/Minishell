@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/12 21:06:41 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/13 19:10:44 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_msh_setenv.c \
 			ft_msh_unsetenv.c \
 			ft_get_path_var_val.c \
+			ft_free_msh_struct.c \
 			main.c
 
 SRC_DIR = ./srcs/

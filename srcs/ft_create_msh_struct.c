@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:40:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 17:10:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 17:40:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ t_prog_param		*ft_create_prog_param_elem(void)
 	}
 	e->prm = NULL;
 	e->next = NULL;
+	return (e);
+}
+
+t_msh_command		*ft_create_msh_command(void)
+{
+	t_msh_command	*e;
+
+	e = malloc(sizeof(struct s_msh_command));
+	e->prog_name = NULL;
+	e->prog_prms = NULL;
+	e->pid = 0;
+	e->next = NULL;
+	e->prog_stats = NULL;
 	return (e);
 }
 
