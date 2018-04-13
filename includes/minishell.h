@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 17:10:51 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/12 22:08:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 
-# define PRINTF				printf
+# define PRINTF				ft_printf
 
 # define IFS				"\x20\x09\x0a\x00"
 
@@ -102,5 +102,9 @@ void						ft_exec_builtin_cd(t_msh_command *cmd);
 void						ft_msh_setenv(char *name, char *value, int overwrite);
 
 void						ft_msh_unsetenv(char *name);
+
+char						*ft_get_path_var_val(char **env, char *var);
+
+void						ft_refresh_fmt_ptrs(void);
 
 #endif
