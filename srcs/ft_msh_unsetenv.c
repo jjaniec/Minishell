@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:06:47 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 16:51:59 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 19:28:22 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void			ft_msh_unsetenv(char *name)
 		while (g_msh_params->cur_environ[++i])
 			if (g_msh_params->cur_environ[i] != s)
 				new_env[j++] = g_msh_params->cur_environ[i];
+			else
+				free(g_msh_params->cur_environ[i]);
 		free(g_msh_params->cur_environ);
 		g_msh_params->cur_environ = new_env;
 	}

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 19:09:01 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 19:20:31 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 		{
 			new_dir_path = ft_strjoin_path(cwd_fmt, cmd->prog_prms[1]);
 			ft_change_dir(new_dir_path);
+			free(new_dir_path);
 		}
 	}
 	free(g_msh_params->prev_location);
