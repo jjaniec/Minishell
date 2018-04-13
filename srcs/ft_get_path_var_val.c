@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 21:04:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 21:15:48 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 13:44:26 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ char		*ft_get_path_var_val(char **env, char *var)
 					r = env[i] + j + 1;
 			break ;
 		}
-	PRINTF("val of %s : |%s|\n", var, r);
+	//PRINTF("val of %s : |%s|\n", var, r);
 	return (r);
 }

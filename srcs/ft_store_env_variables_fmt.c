@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 21:40:57 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 15:13:21 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		ft_store_path_fmt(char *s)
 			j = i + 1;
 		}
 	}
+	free(s2);
 	g_msh_params->path[index] = NULL;
 }
 

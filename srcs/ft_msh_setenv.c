@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 15:55:21 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:07:31 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 16:53:01 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_msh_setenv(char *name, char *value, int overwrite)
 	char	*s;
 	char	*tmp;
 	char	*new;
+	char	**old_env;
 
 	i = -1;
 	s = NULL;
@@ -42,7 +43,12 @@ void	ft_msh_setenv(char *name, char *value, int overwrite)
 		}
 		else
 		{
-			g_msh_params->cur_environ = ft_add_ptr_to_tab(g_msh_params->cur_environ, new);
+			old_env = g_msh_params->cur_environ;
+			g_msh_params->cur_environ = \
+				ft_add_ptr_to_tab(g_msh_params->cur_environ, new);
+			free(old_env);
 		}
+		free(tmp);
+		free(new);
 	}
 }

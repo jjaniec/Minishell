@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/11 18:05:34 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 19:05:55 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ int		main(void)
 		{
 			//ft_debug_g_msh_params();
 			if ((blt = ft_is_builtin(g_msh_params->input)) == 2)
+			{
+				ft_free_msh_command(g_msh_params->input);
 				break ;
+			}
 			else if (blt == 0)
 				ft_start_prog();
 		}
+		if (g_msh_params->input)
+			ft_free_msh_command(g_msh_params->input);
 	}
+	ft_free_msh_params(g_msh_params);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/12 22:08:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/13 19:21:48 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,13 @@ void						ft_msh_unsetenv(char *name);
 char						*ft_get_path_var_val(char **env, char *var);
 
 void						ft_refresh_fmt_ptrs(void);
+
+void						ft_free_msh_command(t_msh_command *mc);
+
+void						ft_free_msh_params(t_msh_params *mp);
+
+void						ft_free_ptr_tab(void **ptr);
+
+t_msh_command				*ft_create_msh_command(void);
 
 #endif
