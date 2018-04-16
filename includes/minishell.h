@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 12:26:35 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 16:05:58 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct				s_msh_params
 typedef struct				s_process
 {
 	pid_t					pid;
-	int						running;
 }							t_process;
 
 extern t_msh_params			*g_msh_params;
@@ -89,7 +88,7 @@ char						*ft_strjoin_path(char *s1, char *s2);
 
 void						ft_start_prog(void);
 
-unsigned int				ft_wait_pid(pid_t pid);
+int							ft_wait_pid(pid_t pid);
 
 int							ft_can_exec_path(t_msh_command *cmd, char *path);
 
@@ -125,7 +124,7 @@ void						ft_free_ptr_tab(void **ptr);
 
 t_msh_command				*ft_create_msh_command(void);
 
-void						ft_handle_child_sigint(pid_t pid);
+void						ft_handle_child_sigint(void);
 
 void						ft_sigint_handler(int signo);
 

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 12:26:24 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 16:06:23 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		main(void)
 
 	g_cur_process = malloc(sizeof(t_process));
 	g_cur_process->pid = 0;
-	g_cur_process->running = 0;
 	g_msh_params = ft_create_msh_params_struct();
 	ft_store_env_variables_fmt();
 	while (1)
