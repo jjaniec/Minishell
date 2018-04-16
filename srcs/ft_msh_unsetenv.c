@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:06:47 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 17:47:43 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:48:57 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			ft_msh_unsetenv(char *name)
 	char	**new_env;
 
 	i = -1;
-	if ((s = ft_locate_env_var(name)) && g_msh_params->cur_environ)
+	if (g_msh_params->cur_environ && (s = ft_locate_env_var(name)))
 	{
 		while (g_msh_params->cur_environ[++i])
 			;

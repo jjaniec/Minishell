@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:45:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 17:35:00 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 18:24:38 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_free_ptr_tab(void **ptr)
 
 	i = -1;
 	while (ptr[++i])
-		ft_free_ptr(ptr[i]);
+		ft_free_ptr(&(ptr[i]));
 }
 
 /*
@@ -33,18 +33,12 @@ void	ft_free_ptr_tab(void **ptr)
 
 void	ft_free_msh_command(t_msh_command *mc)
 {
-	int		i;
-
-	i = 0;
-	if (mc && mc->prog_prms && mc->prog_prms[0])
-		while (mc->prog_prms[++i])
-			ft_free_ptr((void **)&(mc->prog_prms[i]));
-	ft_free_ptr((void **)&(mc->prog_name));
-	free(mc->prog_stats);
+	if (mc && mc->prog_prms)
+		ft_free_ptr_tab((void **)mc->prog_prms);
+	if (mc->prog_stats)
+		free(mc->prog_stats);
 	ft_free_ptr((void **)&(mc->prog_prms));
 	free(mc);
-	mc = NULL;
-	//ft_free_ptr((void **)&mc);
 }
 
 /*

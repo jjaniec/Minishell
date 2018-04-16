@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:40:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 17:40:06 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 20:53:32 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ t_msh_params		*ft_create_msh_params_struct(void)
 	e->home_fmt = NULL;
 	e->prev_location = NULL;
 	e->user = NULL;
-	e->cur_environ = ft_add_ptr_to_tab(environ, NULL);
+	e->path[0] = NULL;
+	if (environ)
+		e->cur_environ = ft_add_ptr_to_tab(environ, NULL);
+	else
+		e->cur_environ = NULL;
 	return (e);
 }

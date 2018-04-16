@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:31:48 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 17:18:30 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 20:59:21 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		ft_exec_builtin_env(void)
 	int		i;
 
 	i = -1;
-	while (g_msh_params->cur_environ[++i])
+	while (g_msh_params->cur_environ && g_msh_params->cur_environ[++i])
 		PRINTF("%s\n", g_msh_params->cur_environ[i]);
 }
 

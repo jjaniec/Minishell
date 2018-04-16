@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 18:22:03 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 18:57:53 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 18:08:46 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		ft_debug_msh_prog_params(void)
 	i = -1;
 	while (g_msh_params->input->prog_prms[++i])
 	{
-		PRINTF("\t\t->prog_prms[%d]: |%s|\n", i, g_msh_params->input->prog_prms[i]);
+		PRINTF("\t\t->prog_prms[%d]: |%s|\n", \
+			i, g_msh_params->input->prog_prms[i]);
 	}
 }
 

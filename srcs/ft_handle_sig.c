@@ -6,14 +6,16 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:20:53 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 13:39:55 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 18:11:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-**
+** Handler to pass to signal when calling it,
+** if pid is set to 0, re-print prompt, otherwise kill pid as it will
+** be the child's one and print error message
 */
 
 void				ft_sigint_handler(int signo)
@@ -31,6 +33,10 @@ void				ft_sigint_handler(int signo)
 		ft_print_prompt();
 	}
 }
+
+/*
+** Initialize handler for sigint signals
+*/
 
 void				ft_handle_child_sigint(void)
 {

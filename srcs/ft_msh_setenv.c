@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 15:55:21 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 17:52:35 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:03:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,30 @@ static char		**ft_msh_add_env_var(char **env, char *name, char *val)
 	return (r);
 }
 
+static char		**ft_init_env(char *name, char *val)
+{
+	char	**r;
+	char	*new;
+	char	*tmp;
+
+	tmp = ft_strjoin(name, "=");
+	new = ft_strjoin(tmp, val);
+	free(tmp);
+	r = malloc(sizeof(char *) * 2);
+	r[0] = new;
+	r[1] = 0;
+	return (r);
+}
+
 char			**ft_msh_setenv(char **env, char *name, \
 					char *value, int overwrite)
 {
-	int		i;
 	char	*s;
 	char	**new_env;
-	char	**old_env;
 
-	i = -1;
 	new_env = NULL;
-	old_env = g_msh_params->cur_environ;
+	if (!env)
+		return (ft_init_env(name, value));
 	s = ft_get_path_var_val(g_msh_params->cur_environ, name);
 	if (s && overwrite)
 	{
