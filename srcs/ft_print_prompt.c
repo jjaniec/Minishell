@@ -6,13 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:33:19 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 16:32:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 18:13:27 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	ft_print_cur_dir(void)
+static void		ft_print_cur_dir(void)
 {
 	char	*cur_path_fmt;
 	int		i;
@@ -28,14 +28,15 @@ static void	ft_print_cur_dir(void)
 		PRINTF("\e[34m~%s\e[39m\n", cur_path_fmt + i);
 	}
 	else
-		PRINTF("\e[34m%s\e[39m\n", ft_get_path_var_val(g_msh_params->cur_environ, "PWD"));
+		PRINTF("\e[34m%s\e[39m\n", \
+			ft_get_path_var_val(g_msh_params->cur_environ, "PWD"));
 }
 
 /*
 ** Prints minishell's prompt
 */
 
-void		ft_print_prompt(void)
+void			ft_print_prompt(void)
 {
 	write(1, "\n", 1);
 	ft_print_cur_dir();
