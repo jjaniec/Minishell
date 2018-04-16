@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:31:18 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 17:40:20 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 18:34:45 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_msh_command		*ft_parse_input(void)
 	char			*s;
 	ssize_t			n;
 
-	s = NULL;
 	n = 0;
 	s = ft_read_fd(0, &n);
 	if (n > 0 && s && ft_strlen(s) >= 1)

@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:33:19 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 18:13:27 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:06:27 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static void		ft_print_cur_dir(void)
 			i++;
 		PRINTF("\e[34m~%s\e[39m\n", cur_path_fmt + i);
 	}
-	else
-		PRINTF("\e[34m%s\e[39m\n", \
-			ft_get_path_var_val(g_msh_params->cur_environ, "PWD"));
+	else if (cur_path_fmt)
+		PRINTF("\e[34m%s\e[39m\n", cur_path_fmt);
 }
 
 /*

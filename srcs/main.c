@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:52:41 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 18:13:50 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:54:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ t_msh_params	*g_msh_params;
 
 t_process		*g_cur_process;
 
-int		main(void)
+/*
+** Main loop,
+** wait for input, parse command and arguments in a s_msh_command struct,
+** exec command and it's arguments with ft_start_prog or exec builtin,
+** free created s_msh_command struct and repeat while a SIGINT is not received
+*/
+
+void	ft_msh_loop(void)
 {
 	int		blt;
 
-	g_cur_process = malloc(sizeof(t_process));
-	g_cur_process->pid = 0;
-	g_msh_params = ft_create_msh_params_struct();
-	ft_store_env_variables_fmt();
 	while (1)
 	{
 		ft_print_prompt();
@@ -43,6 +46,21 @@ int		main(void)
 		if (g_msh_params->input)
 			ft_free_msh_command(g_msh_params->input);
 	}
+}
+
+/*
+** Init s_msh_params to store a dump of environnement variables,
+** and pointers to most used variables (path, pwd, home),
+** then start main loop
+*/
+
+int		main(void)
+{
+	g_cur_process = malloc(sizeof(t_process));
+	g_cur_process->pid = 0;
+	g_msh_params = ft_create_msh_params_struct();
+	ft_store_env_variables_fmt();
+	ft_msh_loop();
 	ft_free_msh_params(g_msh_params);
 	free(g_cur_process);
 	return (0);

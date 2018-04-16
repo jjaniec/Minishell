@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:10:44 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 17:25:26 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:17:26 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		**ft_add_ptr_to_tab(char **tab, char *e)
 
 	r = NULL;
 	i = -1;
-	while (tab[++i])
+	while (tab && tab[++i])
 		;
 	if (i > 0)
 	{

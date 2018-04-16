@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 17:04:34 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 21:15:12 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void						ft_debug_msh_prog_params(void);
 
 int							ft_is_ifs(char c);
 
-char						**ft_parse_prog_params(char *s, t_msh_command *input);
+char						**ft_parse_prog_params(char *s, \
+								t_msh_command *input);
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
 
@@ -104,11 +105,13 @@ void						ft_exec_builtin(int blt, t_msh_command *cmd);
 
 char						**ft_add_ptr_to_tab(char **tab, char *e);
 
-char						*ft_update_path_value(char **path, char *var_name, char *data);
+char						*ft_update_path_value(char **path, \
+								char *var_name, char *data);
 
 void						ft_exec_builtin_cd(t_msh_command *cmd);
 
-char						**ft_msh_setenv(char **env, char *name, char *value, int overwrite);
+char						**ft_msh_setenv(char **env, char *name, \
+								char *value, int overwrite);
 
 void						ft_msh_unsetenv(char *name);
 
