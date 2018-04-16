@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 19:10:44 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 16:42:22 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 17:25:26 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char		**ft_add_ptr_to_tab(char **tab, char *e)
 			}
 		}
 		r[i] = ((e) ? (ft_strdup(e)) : (e));
+		r[i + ((e) ? (1) : (0))] = NULL;
 	}
 	return (r);
 }

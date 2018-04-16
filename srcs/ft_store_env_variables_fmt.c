@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 15:13:21 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 16:33:42 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,24 @@ void			ft_store_env_variables_fmt(void)
 	int		i;
 
 	i = -1;
-	while (g_msh_params->cur_environ[++i])
-	{
-		if (ft_strcmp("PATH", g_msh_params->cur_environ[i]) == -61)
-			ft_store_path_fmt(g_msh_params->cur_environ[i]);
-		else if (ft_strcmp("PWD", g_msh_params->cur_environ[i]) == -61)
+	if (g_msh_params->cur_environ)
+		while (g_msh_params->cur_environ[++i])
 		{
-			g_msh_params->cwd_fmt = \
-				ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "PWD");
-			g_msh_params->cwd_env = g_msh_params->cur_environ[i];
+			if (ft_strcmp("PATH", g_msh_params->cur_environ[i]) == -61)
+				ft_store_path_fmt(g_msh_params->cur_environ[i]);
+			else if (ft_strcmp("PWD", g_msh_params->cur_environ[i]) == -61)
+			{
+				g_msh_params->cwd_fmt = \
+					ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "PWD");
+				g_msh_params->cwd_env = g_msh_params->cur_environ[i];
+			}
+			else if (ft_strcmp("HOME", g_msh_params->cur_environ[i]) == -61)
+				g_msh_params->home_fmt = \
+					ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "HOME");
+			else if (ft_strcmp("USER", g_msh_params->cur_environ[i]) == -61)
+				g_msh_params->user = \
+					ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "USER");
 		}
-		else if (ft_strcmp("HOME", g_msh_params->cur_environ[i]) == -61)
-			g_msh_params->home_fmt = \
-				ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "HOME");
-		else if (ft_strcmp("USER", g_msh_params->cur_environ[i]) == -61)
-			g_msh_params->user = \
-				ft_get_path_var_val(&(g_msh_params->cur_environ[i]), "USER");
-	}
 }
 
 void			ft_refresh_fmt_ptrs(void)
