@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/11 18:06:47 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 21:48:57 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 22:47:28 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,28 @@ void			ft_msh_unsetenv(char *name)
 	i = -1;
 	if (g_msh_params->cur_environ && (s = ft_locate_env_var(name)))
 	{
-		while (g_msh_params->cur_environ[++i])
-			;
-		new_env = malloc(sizeof(char *) * i);
-		new_env[i - 1] = NULL;
-		i = -1;
-		j = 0;
-		while (g_msh_params->cur_environ[++i])
-			if (g_msh_params->cur_environ[i] != s)
-				new_env[j++] = g_msh_params->cur_environ[i];
-			else
-				free(g_msh_params->cur_environ[i]);
-		free(g_msh_params->cur_environ);
-		g_msh_params->cur_environ = new_env;
+		if (g_msh_params->cur_environ[0] && !g_msh_params->cur_environ[1])
+		{
+			free(g_msh_params->cur_environ[0]);
+			free(g_msh_params->cur_environ[1]);
+			free(g_msh_params->cur_environ);
+			g_msh_params->cur_environ = NULL;
+		}
+		else
+		{
+			while (g_msh_params->cur_environ[++i])
+				;
+			new_env = malloc(sizeof(char *) * i);
+			new_env[i - 1] = NULL;
+			i = -1;
+			j = 0;
+			while (g_msh_params->cur_environ[++i])
+				if (g_msh_params->cur_environ[i] != s)
+					new_env[j++] = g_msh_params->cur_environ[i];
+				else
+					free(g_msh_params->cur_environ[i]);
+			free(g_msh_params->cur_environ);
+			g_msh_params->cur_environ = new_env;
+		}
 	}
 }

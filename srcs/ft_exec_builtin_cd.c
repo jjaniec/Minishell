@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 21:47:54 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/17 13:21:16 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	ft_change_dir(char *path)
 		ft_putstr_fd(path, 2);
 		if (stat(path, &path_stats))
 			ft_putstr_fd(": no such file or directory\n", 2);
+		else if (!S_ISDIR(path_stats.st_mode))
+			ft_putstr_fd(": not a directory\n", 2);
 		else
 			ft_putstr_fd(": permission denied\n", 2);
 	}
@@ -64,7 +66,7 @@ static void	ft_cd_relative_dir(t_msh_command *cmd)
 	char	*new_dir_path;
 	char	cwd_fmt[1024];
 
-	if ((getcwd(cwd_fmt, sizeof(cwd_fmt))))
+	if (getcwd(cwd_fmt, sizeof(cwd_fmt)))
 	{
 		new_dir_path = ft_strjoin_path(cwd_fmt, cmd->prog_prms[1]);
 		ft_change_dir(new_dir_path);

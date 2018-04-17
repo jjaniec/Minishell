@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 13:45:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 18:24:38 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/16 22:59:02 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_free_msh_params(t_msh_params *mp)
 	int		i;
 
 	i = -1;
-	while (mp->cur_environ[++i])
+	while (mp->cur_environ && mp->cur_environ[++i])
 		ft_free_ptr((void **)&(mp->cur_environ[i]));
 	free(mp->cur_environ);
 	mp->cur_environ = NULL;
