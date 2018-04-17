@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/17 13:21:16 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/17 17:57:11 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,26 @@ static void	ft_refresh_cwd_env(void)
 }
 
 /*
-** Call chdir to new path
+** Call chdir to new path & refresh g_msh_params->prev_location
 */
 
 static void	ft_change_dir(char *path)
 {
 	struct stat	path_stats;
+	char		*cwd_path;
+	char		*new_prev_location;
 
+	cwd_path = malloc(sizeof(char) * 1024);
+	new_prev_location = getcwd(cwd_path, 1024);
 	if (!path && g_msh_params->home_fmt)
 		ft_change_dir(g_msh_params->home_fmt);
-	if (path && chdir(path))
+	if (path && !chdir(path) && new_prev_location)
+	{
+		g_msh_params->prev_location = new_prev_location;
+		ft_update_path_value(g_msh_params->cur_environ, "OLDPWD", \
+			g_msh_params->prev_location);
+	}
+	else if (path && chdir(path))
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(path, 2);
@@ -84,10 +94,5 @@ void		ft_exec_builtin_cd(t_msh_command *cmd)
 		ft_change_dir(g_msh_params->prev_location);
 	else if (cmd->prog_prms[1])
 		ft_cd_relative_dir(cmd);
-	free(g_msh_params->prev_location);
-	g_msh_params->prev_location = (g_msh_params->cwd_fmt) ? \
-		(ft_strdup(g_msh_params->cwd_fmt)) : NULL;
-	ft_update_path_value(g_msh_params->cur_environ, "OLDPWD", \
-		g_msh_params->prev_location);
 	ft_refresh_cwd_env();
 }
