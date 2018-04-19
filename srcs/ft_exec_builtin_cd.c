@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/17 17:57:11 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 15:43:07 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,18 @@ static void	ft_refresh_cwd_env(void)
 ** Call chdir to new path & refresh g_msh_params->prev_location
 */
 
+static void	ft_print_cd_err(char *path, struct stat *path_stats)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(path, 2);
+	if (stat(path, path_stats))
+		ft_putstr_fd(": no such file or directory\n", 2);
+	else if (!S_ISDIR(path_stats->st_mode))
+		ft_putstr_fd(": not a directory\n", 2);
+	else
+		ft_putstr_fd(": permission denied\n", 2);
+}
+
 static void	ft_change_dir(char *path)
 {
 	struct stat	path_stats;
@@ -49,21 +61,18 @@ static void	ft_change_dir(char *path)
 		ft_change_dir(g_msh_params->home_fmt);
 	if (path && !chdir(path) && new_prev_location)
 	{
+		free(g_msh_params->prev_location);
 		g_msh_params->prev_location = new_prev_location;
 		ft_update_path_value(g_msh_params->cur_environ, "OLDPWD", \
 			g_msh_params->prev_location);
 	}
 	else if (path && chdir(path))
 	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(path, 2);
-		if (stat(path, &path_stats))
-			ft_putstr_fd(": no such file or directory\n", 2);
-		else if (!S_ISDIR(path_stats.st_mode))
-			ft_putstr_fd(": not a directory\n", 2);
-		else
-			ft_putstr_fd(": permission denied\n", 2);
+		free(cwd_path);
+		ft_print_cd_err(path, &path_stats);
 	}
+	else
+		free(cwd_path);
 }
 
 /*

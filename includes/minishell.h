@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 21:15:12 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 15:05:39 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,9 @@ t_msh_command				*ft_create_msh_command(void);
 void						ft_handle_child_sigint(void);
 
 void						ft_sigint_handler(int signo);
+
+void						ft_fork_and_start(char *prog_path, \
+								char **prog_params, char **prog_env, \
+								int exit_on_failure);
 
 #endif

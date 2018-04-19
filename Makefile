@@ -6,7 +6,7 @@
 #    By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 21:53:56 by jjaniec           #+#    #+#              #
-#    Updated: 2018/04/13 21:25:52 by jjaniec          ###   ########.fr        #
+#    Updated: 2018/04/19 15:56:14 by jjaniec          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NAME = 	ft_print_prompt.c \
 			ft_get_path_var_val.c \
 			ft_free_msh_struct.c \
 			ft_handle_sig.c \
+			ft_fork_and_start.c \
 			main.c
 
 SRC_DIR = ./srcs/
@@ -47,11 +48,11 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC_NAME:.c=.o))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
-DEV_FLAGS = -fsanitize=address -fno-omit-frame-pointer
+#DEV_FLAGS = -fsanitize=address -fno-omit-frame-pointer
 IFLAGS = -I./ft_printf/includes -I./$(INCLUDES_DIR)
 LFLAGS = -L./ft_printf -lftprintf
 
-#CFLAGS += $(DEV_FLAGS)
+CFLAGS += $(DEV_FLAGS)
 FT_PRINTF_DIR = ./ft_printf
 LIBFTPRINTF = $(addprefix $(FT_PRINTF_DIR),"/libftprintf.a")
 
