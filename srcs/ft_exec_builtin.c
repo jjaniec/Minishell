@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:31:48 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 21:51:18 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:17:04 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void		ft_exec_builtin_echo(t_msh_command *cmd)
 	PRINTF("\n");
 }
 
-static void		ft_exec_builtin_env(void)
+static void		ft_exec_builtin_env(t_msh_params *msh_params)
 {
 	int		i;
 
 	i = -1;
-	while (g_msh_params->cur_environ && g_msh_params->cur_environ[++i])
-		PRINTF("%s\n", g_msh_params->cur_environ[i]);
+	while (msh_params->cur_environ && msh_params->cur_environ[++i])
+		PRINTF("%s\n", msh_params->cur_environ[i]);
 }
 
 static int		ft_args_count_err(t_msh_command *cmd, int min, int max)
@@ -57,20 +57,21 @@ static int		ft_args_count_err(t_msh_command *cmd, int min, int max)
 ** Execute builtin number $blt
 */
 
-void			ft_exec_builtin(int blt, t_msh_command *cmd)
+void			ft_exec_builtin(int blt, t_msh_params *msh_params, \
+					t_msh_command *cmd)
 {
 	if (blt == 1)
 		ft_exec_builtin_echo(cmd);
 	else if (blt == 5)
-		ft_exec_builtin_env();
+		ft_exec_builtin_env(msh_params);
 	else if (blt == 2 && !ft_args_count_err(cmd, 0, 1))
-		ft_exec_builtin_cd(cmd);
+		ft_exec_builtin_cd(msh_params, cmd);
 	else if (blt == 3 && !ft_args_count_err(cmd, 1, 2) && \
 		cmd->prog_prms_count == 2)
-		g_msh_params->cur_environ = ft_msh_setenv(\
-			g_msh_params->cur_environ, cmd->prog_prms[1], cmd->prog_prms[2], 1);
+		msh_params->cur_environ = ft_msh_setenv(msh_params, \
+			msh_params->cur_environ, cmd->prog_prms[1], cmd->prog_prms[2]);
 	else if (blt == 4 && !ft_args_count_err(cmd, 1, 1))
-		ft_msh_unsetenv(cmd->prog_prms[1]);
+		ft_msh_unsetenv(msh_params, cmd->prog_prms[1]);
 	if (blt == 3 || blt == 4)
-		ft_refresh_fmt_ptrs(g_msh_params);
+		ft_refresh_fmt_ptrs(msh_params);
 }

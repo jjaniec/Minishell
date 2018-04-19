@@ -6,13 +6,13 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:33:19 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/17 13:19:44 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:19:13 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void		ft_print_cur_dir(void)
+static void		ft_print_cur_dir(t_msh_params *msh_params)
 {
 	char			cur_path_fmt[1024];
 	struct stat		home_stats;
@@ -23,12 +23,12 @@ static void		ft_print_cur_dir(void)
 		ft_putstr_fd("\e[31mUnknown path ¯\\_(ツ)_/¯\n\e[39m", 2);
 	else
 	{
-		if (g_msh_params->home_fmt && \
-			ft_strstr(cur_path_fmt, g_msh_params->home_fmt) && \
+		if (msh_params->home_fmt && \
+			ft_strstr(cur_path_fmt, msh_params->home_fmt) && \
 			!(stat(cur_path_fmt, &home_stats)))
 		{
-			while (cur_path_fmt[i] == g_msh_params->home_fmt[i] && \
-				g_msh_params->home_fmt[i])
+			while (cur_path_fmt[i] == msh_params->home_fmt[i] && \
+				msh_params->home_fmt[i])
 				i++;
 			PRINTF("\e[34m~%s\e[39m\n", cur_path_fmt + i);
 		}
@@ -41,9 +41,9 @@ static void		ft_print_cur_dir(void)
 ** Prints minishell's prompt
 */
 
-void			ft_print_prompt(void)
+void			ft_print_prompt(t_msh_params *msh_params)
 {
 	write(1, "\n", 1);
-	ft_print_cur_dir();
+	ft_print_cur_dir(msh_params);
 	write(1, "❯ ", 4);
 }
