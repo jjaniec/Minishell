@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 20:01:56 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 15:04:45 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 21:43:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void			ft_start_prog_path(void)
 
 void			ft_start_prog(void)
 {
-	PRINTF("Prog name : %s\n", g_msh_params->input->prog_name);
 	if (g_msh_params->input->prog_name[0] == '/')
 		ft_is_prog_name_abs_path(g_msh_params->input);
 	else if (ft_strchr(g_msh_params->input->prog_name, '/'))

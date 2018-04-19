@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:53:00 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 18:15:08 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 21:53:46 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Get path environnement variable data and store each entry in a char *
 */
 
-static void		ft_store_path_fmt(char *s)
+static void		ft_store_path_fmt(t_msh_params *msh_params, char *s)
 {
 	char		*s2;
 	int			i;
@@ -33,69 +33,61 @@ static void		ft_store_path_fmt(char *s)
 		if (s2[i] == ':' || !s2[i])
 		{
 			entry = ft_strsub(s2, j, i - j);
-			g_msh_params->path[index++] = entry;
+			msh_params->path[index++] = entry;
 			if (!s2[i])
 				break ;
 			j = i + 1;
 		}
 	}
 	free(s2);
-	g_msh_params->path[index] = NULL;
-}
-
-void			ft_store_cwd_fmt(char *cwd_env_ptr)
-{
-	if (cwd_env_ptr && ft_strlen(cwd_env_ptr) >= 4)
-		g_msh_params->cwd_fmt = cwd_env_ptr + 4;
-	else
-		g_msh_params->cwd_fmt = NULL;
+	msh_params->path[index] = NULL;
 }
 
 /*
 ** Store usefull environnement variable in our global structure
 */
 
-void			ft_store_env_variables_fmt(void)
+void			ft_store_env_variables_fmt(t_msh_params *msh_params)
 {
 	int		i;
 
 	i = -1;
-	if (g_msh_params->cur_environ)
-		while (g_msh_params->cur_environ[++i])
+	if (msh_params->cur_environ)
+		while (msh_params->cur_environ[++i])
 		{
-			if (ft_strcmp("PATH", g_msh_params->cur_environ[i]) == -61)
-				ft_store_path_fmt(g_msh_params->cur_environ[i]);
-			else if (ft_strcmp("PWD", g_msh_params->cur_environ[i]) == -61)
+			if (ft_strcmp("PATH", msh_params->cur_environ[i]) == -61)
+				ft_store_path_fmt(msh_params, msh_params->cur_environ[i]);
+			else if (ft_strcmp("PWD", msh_params->cur_environ[i]) == -61)
 			{
-				g_msh_params->cwd_fmt = \
+				msh_params->cwd_fmt = \
 					ft_get_path_var_val(\
-						&(g_msh_params->cur_environ[i]), "PWD");
-				g_msh_params->cwd_env = g_msh_params->cur_environ[i];
+						&(msh_params->cur_environ[i]), "PWD");
+				msh_params->cwd_env = msh_params->cur_environ[i];
 			}
-			else if (ft_strcmp("HOME", g_msh_params->cur_environ[i]) == -61)
-				g_msh_params->home_fmt = \
+			else if (ft_strcmp("HOME", msh_params->cur_environ[i]) == -61)
+				msh_params->home_fmt = \
 					ft_get_path_var_val(\
-						&(g_msh_params->cur_environ[i]), "HOME");
-			else if (ft_strcmp("USER", g_msh_params->cur_environ[i]) == -61)
-				g_msh_params->user = \
+						&(msh_params->cur_environ[i]), "HOME");
+			else if (ft_strcmp("USER", msh_params->cur_environ[i]) == -61)
+				msh_params->user = \
 					ft_get_path_var_val(\
-						&(g_msh_params->cur_environ[i]), "USER");
+						&(msh_params->cur_environ[i]), "USER");
 		}
 }
 
-void			ft_refresh_fmt_ptrs(void)
+void			ft_refresh_fmt_ptrs(t_msh_params *msh_params)
 {
 	int		i;
 
 	i = -1;
-	while (g_msh_params->path[++i])
+	while (msh_params->path[++i])
 	{
-		free(g_msh_params->path[i]);
-		g_msh_params->path[i] = NULL;
+		free(msh_params->path[i]);
+		msh_params->path[i] = NULL;
 	}
-	g_msh_params->cwd_fmt = NULL;
-	g_msh_params->cwd_env = NULL;
-	g_msh_params->home_fmt = NULL;
-	g_msh_params->user = NULL;
-	ft_store_env_variables_fmt();
+	msh_params->cwd_fmt = NULL;
+	msh_params->cwd_env = NULL;
+	msh_params->home_fmt = NULL;
+	msh_params->user = NULL;
+	ft_store_env_variables_fmt(msh_params);
 }

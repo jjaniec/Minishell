@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:40:55 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 20:53:32 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 21:47:46 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_msh_command		*ft_create_msh_command(void)
 ** Creates a msh_params struct and init it's elems
 */
 
-t_msh_params		*ft_create_msh_params_struct(void)
+t_msh_params		*ft_create_msh_params_struct(char **environ)
 {
 	t_msh_params	*e;
 

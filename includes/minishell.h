@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 15:05:39 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 21:55:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,9 @@ extern t_msh_params			*g_msh_params;
 
 extern t_process			*g_cur_process;
 
-extern char 				**environ;
-
 t_msh_command				*ft_parse_input(void);
 
-t_msh_params				*ft_create_msh_params_struct(void);
+t_msh_params				*ft_create_msh_params_struct(char **environ);
 
 t_prog_param				*ft_create_prog_param_elem(void);
 
@@ -83,7 +81,8 @@ char						**ft_parse_prog_params(char *s, \
 
 char						*ft_parse_prog_param_nb(char *str, int nb);
 
-void						ft_store_env_variables_fmt(void);
+void						ft_store_env_variables_fmt(\
+								t_msh_params *msh_params);
 
 char						*ft_strjoin_path(char *s1, char *s2);
 
@@ -117,7 +116,7 @@ void						ft_msh_unsetenv(char *name);
 
 char						*ft_get_path_var_val(char **env, char *var);
 
-void						ft_refresh_fmt_ptrs(void);
+void						ft_refresh_fmt_ptrs(t_msh_params *msh_params);
 
 void						ft_free_msh_command(t_msh_command *mc);
 
