@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 21:55:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:22:35 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct				s_process
 	pid_t					pid;
 }							t_process;
 
-extern t_msh_params			*g_msh_params;
-
 extern t_process			*g_cur_process;
+
+extern t_msh_params			*g_msh_params;
 
 t_msh_command				*ft_parse_input(void);
 
@@ -68,11 +68,9 @@ t_msh_params				*ft_create_msh_params_struct(char **environ);
 
 t_prog_param				*ft_create_prog_param_elem(void);
 
-void						ft_print_prompt(void);
+void						ft_print_prompt(t_msh_params *msh_params);
 
-void						ft_debug_g_msh_params(void);
-
-void						ft_debug_msh_prog_params(void);
+void						ft_debug_msh_params(t_msh_params *msh_params);
 
 int							ft_is_ifs(char c);
 
@@ -86,7 +84,7 @@ void						ft_store_env_variables_fmt(\
 
 char						*ft_strjoin_path(char *s1, char *s2);
 
-void						ft_start_prog(void);
+void						ft_start_prog(t_msh_params *msh_params);
 
 int							ft_wait_pid(pid_t pid);
 
@@ -98,21 +96,25 @@ void						ft_handle_err_code(int err, char *prog_name);
 
 int							ft_handle_err(t_msh_command *cmd);
 
-int							ft_is_builtin(t_msh_command *cmd);
+int							ft_is_builtin(t_msh_params *msh_params, \
+								t_msh_command *cmd);
 
-void						ft_exec_builtin(int blt, t_msh_command *cmd);
+void						ft_exec_builtin(int blt, t_msh_params *msh_params, \
+								t_msh_command *cmd);
 
 char						**ft_add_ptr_to_tab(char **tab, char *e);
 
 char						*ft_update_path_value(char **path, \
 								char *var_name, char *data);
 
-void						ft_exec_builtin_cd(t_msh_command *cmd);
+void						ft_exec_builtin_cd(t_msh_params *msh_params, \
+								t_msh_command *cmd);
 
-char						**ft_msh_setenv(char **env, char *name, \
-								char *value, int overwrite);
+char						**ft_msh_setenv(t_msh_params *msh_params, \
+								char **env, char *name, char *value);
 
-void						ft_msh_unsetenv(char *name);
+void						ft_msh_unsetenv(t_msh_params *msh_params, \
+								char *name);
 
 char						*ft_get_path_var_val(char **env, char *var);
 

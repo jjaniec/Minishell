@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/13 21:20:53 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/16 18:11:49 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:18:49 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void				ft_sigint_handler(int signo)
 	else if (signo == SIGINT && !g_cur_process->pid)
 	{
 		ft_putchar('\n');
-		ft_print_prompt();
+		ft_print_prompt(g_msh_params);
 	}
 }
 
