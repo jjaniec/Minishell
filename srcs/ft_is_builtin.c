@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:47:51 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/10 17:48:31 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/19 22:13:19 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@
 ** otherwise return 0 to look for executable with path entries
 */
 
-int		ft_is_builtin(t_msh_command *cmd)
+int		ft_is_builtin(t_msh_params *msh_params, t_msh_command *cmd)
 {
 	int		blt;
 
 	if (cmd && cmd->prog_name)
 	{
-		if (ft_strcmp(g_msh_params->input->prog_name, "exit") == 0)
+		if (ft_strcmp(msh_params->input->prog_name, "exit") == 0)
 			return (2);
 		else if ((\
-			(ft_strcmp(g_msh_params->input->prog_name, "echo") == 0 && \
+			(ft_strcmp(msh_params->input->prog_name, "echo") == 0 && \
 				(blt = 1)) || \
-			(ft_strcmp(g_msh_params->input->prog_name, "cd") == 0 && \
+			(ft_strcmp(msh_params->input->prog_name, "cd") == 0 && \
 				(blt = 2)) || \
-			(ft_strcmp(g_msh_params->input->prog_name, "setenv") == 0 && \
+			(ft_strcmp(msh_params->input->prog_name, "setenv") == 0 && \
 				(blt = 3)) || \
-			(ft_strcmp(g_msh_params->input->prog_name, "unsetenv") == 0 && \
+			(ft_strcmp(msh_params->input->prog_name, "unsetenv") == 0 && \
 				(blt = 4)) || \
-			(ft_strcmp(g_msh_params->input->prog_name, "env") == 0 && \
+			(ft_strcmp(msh_params->input->prog_name, "env") == 0 && \
 				(blt = 5))))
 		{
-			ft_exec_builtin(blt, cmd);
+			ft_exec_builtin(blt, msh_params, cmd);
 			return (1);
 		}
 	}

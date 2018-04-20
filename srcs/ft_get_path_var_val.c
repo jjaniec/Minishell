@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_can_exec_path.c                                 :+:      :+:    :+:   */
+/*   ft_get_path_var_val.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/09 18:16:28 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/13 15:46:54 by jjaniec          ###   ########.fr       */
+/*   Created: 2018/04/12 21:04:55 by jjaniec           #+#    #+#             */
+/*   Updated: 2018/04/16 18:25:29 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 /*
-** Return 0 if found executable can be launched, otherwise return 1
+** Return value of a path variable
 */
 
-int		ft_can_exec_path(t_msh_command *cmd, char *path)
+char		*ft_get_path_var_val(char **env, char *var)
 {
-	if (cmd && path)
-	{
-		if (cmd->stats_rcode < 0)
-		{
-			ft_handle_err_code(2, cmd->prog_name);
-			return (0);
-		}
-		return (ft_handle_err(cmd));
-	}
-	return (0);
+	int		i;
+	char	*r;
+
+	r = NULL;
+	i = -1;
+	if (!env)
+		return (r);
+	while (env[++i])
+		if (ft_strcmp(var, env[i]) == -61)
+			return (ft_strchr(env[i], '=') + sizeof(char));
+	return (r);
 }
