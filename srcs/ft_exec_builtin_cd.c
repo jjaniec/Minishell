@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 22:44:31 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 22:07:34 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 18:11:18 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ static void	ft_cd_relative_dir(t_msh_params *msh_params, t_msh_command *cmd)
 
 void		ft_exec_builtin_cd(t_msh_params *msh_params, t_msh_command *cmd)
 {
-	if (!(cmd->prog_prms[0] && cmd->prog_prms[1]))
+	if (cmd->prog_prms[0] && (!(cmd->prog_prms[1]) || \
+		(cmd->prog_prms[1][0] == '~' && !(cmd->prog_prms[1][1]))))
 		ft_change_dir(msh_params, msh_params->home_fmt);
 	else if (cmd->prog_prms[1][0] == '/')
 		ft_change_dir(msh_params, cmd->prog_prms[1]);
