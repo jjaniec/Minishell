@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 14:53:50 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 22:22:35 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 18:48:23 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ char						**ft_add_ptr_to_tab(char **tab, char *e);
 
 char						*ft_update_path_value(char **path, \
 								char *var_name, char *data);
+
+void						ft_exec_builtin_echo(t_msh_params *msh_params, \
+								t_msh_command *cmd);
 
 void						ft_exec_builtin_cd(t_msh_params *msh_params, \
 								t_msh_command *cmd);
