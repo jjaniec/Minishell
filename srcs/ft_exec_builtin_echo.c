@@ -6,7 +6,7 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 18:18:05 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/27 20:10:01 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/30 13:24:23 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,18 @@ static void	ft_echo_env_variables(t_msh_params *msh_params, char *s)
 void		ft_exec_builtin_echo(t_msh_params *msh_params, t_msh_command *cmd)
 {
 	int		i;
+	char	*ptr;
 
 	i = 0;
 	if (cmd->prog_prms && cmd->prog_prms[0])
 	{
 		while (cmd->prog_prms[++i])
 		{
-			if (ft_strchr(cmd->prog_prms[i], '$'))
+			ptr = ft_strchr(cmd->prog_prms[i], '$');
+			ptr = (ptr && *ptr) ? (ptr + sizeof(char)) : (NULL);
+			if (ptr && *ptr)
 			{
+
 				ft_echo_env_variables(msh_params, cmd->prog_prms[i]);
 				if (i == 1)
 					PRINTF(" ");
