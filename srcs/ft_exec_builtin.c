@@ -6,24 +6,11 @@
 /*   By: jjaniec <jjaniec@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 17:31:48 by jjaniec           #+#    #+#             */
-/*   Updated: 2018/04/19 22:17:04 by jjaniec          ###   ########.fr       */
+/*   Updated: 2018/04/27 18:29:06 by jjaniec          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static void		ft_exec_builtin_echo(t_msh_command *cmd)
-{
-	int		i;
-
-	i = 0;
-	if (cmd->prog_prms && cmd->prog_prms[0])
-	{
-		while (cmd->prog_prms[++i])
-			PRINTF((i == 1) ? ("%s") : (" %s"), cmd->prog_prms[i]);
-	}
-	PRINTF("\n");
-}
 
 static void		ft_exec_builtin_env(t_msh_params *msh_params)
 {
@@ -61,7 +48,7 @@ void			ft_exec_builtin(int blt, t_msh_params *msh_params, \
 					t_msh_command *cmd)
 {
 	if (blt == 1)
-		ft_exec_builtin_echo(cmd);
+		ft_exec_builtin_echo(msh_params, cmd);
 	else if (blt == 5)
 		ft_exec_builtin_env(msh_params);
 	else if (blt == 2 && !ft_args_count_err(cmd, 0, 1))
